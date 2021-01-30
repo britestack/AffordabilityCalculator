@@ -71,34 +71,26 @@ const ArrowContainer = styled.div`
   padding-right: 25px;
 `;
 
-const Tooltip = styled.span`
-  cursor: help;
-  border-bottom: 1px dashed #a7a6ab;
-`;
-
-const Lender = ({ loan, lender, type }) => {
+const Lender = ({ lender, type }) => {
   const ratingTotal = lender.reviews.reduce((i, review) => i + review.rating, 0);
   const ratingAvg = Math.floor(ratingTotal / lender.reviews.length);
   return (
-  <LenderContain>
-    <LenderInfo>
-      <div>{`${type} fixed`}</div>
-      <div><Green>{lender.name}</Green></div>
-      <div>
-        <Stars rating={ratingAvg} />
-        {`${lender.reviews.length} Reviews`}
-      </div>
-    </LenderInfo>
-    <Quotes>
-      <div>
-        <span className="bold">{`${loan.apr} %`}</span> APR</div>
-      <div><span className="bold">{`${loan.rate} %`}</span> RATE</div>
-      <div><span className="bold">{`$${loan.fees}`}</span><Tooltip>LENDER FEES</Tooltip></div>
-    </Quotes>
-    <ArrowContainer>
-      <Arrow />
-    </ArrowContainer>
-  </LenderContain>
+    <LenderContain>
+      <LenderInfo>
+        <div>{`${type} fixed`}</div>
+        <div>
+          <Green>{lender.name}</Green>
+        </div>
+        <div>
+          <Stars rating={ratingAvg} />
+          {`${lender.reviews.length} Reviews`}
+        </div>
+      </LenderInfo>
+      <Quotes />
+      <ArrowContainer>
+        <Arrow />
+      </ArrowContainer>
+    </LenderContain>
   );
 };
 
