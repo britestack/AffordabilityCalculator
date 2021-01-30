@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  Mortgage.findOne({ _id: req.params.id })
+  Mortgage.findOne({ mortgage_id: req.params.id })
     .then((mortgage) => {
       res.status(200).send(mortgage);
     })
