@@ -325,7 +325,7 @@ npm i
 
 </br>
 
-## __user_favorites API__
+## __listing_mortgages API__
 
 </br>
 
