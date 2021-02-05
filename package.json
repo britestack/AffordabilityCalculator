@@ -8,7 +8,7 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "react-dev": "webpack -d --watch",
-    "seed": "node db/seed.js",
+    "seed": "node db/csvGenerator.js",
     "test": "jest --coverage",
     "docker-start": "node db/seed.js & webpack & node server/index.js"
   },
