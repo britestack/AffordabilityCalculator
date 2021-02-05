@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS listings (
   rating decimal,
 );
 
-COPY listings (listing_id, price, rating) FROM '/Users/jacky/Desktop/Workspace/SDC/AffordabilityCalculator/db/listings.csv' WITH CSV HEADER DELIMITER ',';
+COPY listings (listing_id, price, rating) FROM '/Users/jacky/Desktop/Workspace/SDC/AffordabilityCalculator/db/listings.csv';

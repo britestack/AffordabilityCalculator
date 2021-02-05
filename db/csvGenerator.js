@@ -1,6 +1,6 @@
 const csvWriter = require('csv-writer').createObjectCsbWriter;
 
-const records = 1000;
+const records = 10000000;
 
 const getRandoms = (max, min) => (Math.floor((Math.random() * (max - min)) + min));
 const getRatings = (max, min) => Math.random() * (max - min) + min;
