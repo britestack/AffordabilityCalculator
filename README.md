@@ -29,7 +29,209 @@ npm i
 
 - **update this with seeding script to generate mock data in a CSV file
 
+## Mortgages API
+-GET `/api/listing/:id/mortgages/`
+
+**Path Parameters:**
+- `id` - listing_id
+
+**Success Status Code:** `200`
+
+
+**Returns:** Expects JSON with the following keys.
+
+```json
+{
+  mortgage_id: INT
+  mortgage_name: STRING
+  terms: STRING[]
+  fees: INT
+  rate: INT
+  apr: INT
+}
+```
+-GET `/api/mortgages`
+
+**Path Parameters:**
+- `none`
+
+**Success Status Code:** `200`
+
+
+**Returns:** Expects JSON with the following keys.
+
+```json
+{
+  mortgage_name: STRING
+  terms: STRING[]
+  fees: INT
+  rate: INT
+  apr: INT
+}
+```
+
+-GET `/api/mortgages/:id`
+
+**Path Parameters:**
+- `id` mortgages_id
+
+**Success Status Code:** `200`
+
+
+**Returns:** Expects JSON with the following keys.
+
+```json
+{
+  mortgage_name: STRING
+  terms: STRING[]
+  fees: INT
+  rate: INT
+  apr: INT
+}
+```
+
+-POST `/api/mortgages`
+
+**Path Parameters:**
+- `id` - mortgages_id
+
+**Request Body**
+```json
+{
+  mortgage_name: STRING
+  terms: STRING[]
+  fees: INT
+  rate: INT
+  apr: INT
+}
+  ```
+
+### Path responses:
+**Success Status Code:** `201`
+
+
+### Response format:
+* Returns: JSON
+
+```json
+    {
+      "message": "Successfully added a mortgage."
+    }
+```
+
+```json
+    {
+      "message": "Failed to add a mortgage."
+    }
+```
+
 </br>
+
+-POST `/api/listings/:id/mortgages`
+
+**Path Parameters:**
+- `id` - listings_id
+
+**Request Body**
+```json
+{
+  mortgage_name: STRING
+  terms: STRING[]
+  fees: INT
+  rate: INT
+  apr: INT
+}
+  ```
+
+### Path responses:
+**Success Status Code:** `201`
+
+
+### Response format:
+* Returns: JSON
+
+```json
+    {
+      "message": "Successfully added a mortgage to a specific listing."
+    }
+```
+
+```json
+    {
+      "message": "Failed to add a mortgage to a specific listing."
+    }
+```
+
+</br>
+
+-PATCH `/api/mortgages/:id`
+
+**Path Parameters:**
+- `id` - mortgages id
+
+**Request Body**
+*
+```json
+{
+  name: STRING
+  terms: STRING[]
+  fees: INT
+  rate: INT
+  apr: INT
+}
+  ```
+
+### Path responses:
+**Success Status Code:** `201`
+
+
+### Response format:
+* Returns: JSON
+
+```json
+    {
+      "message": "Successfully updated a specific mortgage."
+    }
+```
+
+```json
+    {
+      "message": "Failed to update a specific mortgage."
+    }
+```
+</br>
+
+-DELETE `/api/mortgage/:id`
+
+###Path parameters:
+
+**Request Body**
+*
+
+   ```id``` mortgage id
+
+
+### Path responses:
+**Success Status Code:** `204`
+
+
+### Response format:
+* Returns: JSON
+
+```json
+    {
+      "message": "Successfully deleted a specific mortgage."
+    }
+```
+
+```json
+    {
+      "message": "Failed to deleted a specific mortgage."
+    }
+```
+
+</br>
+
 
 ## Listing API
 
@@ -49,7 +251,6 @@ npm i
       id: INT
       price: INT
       rating: INT
-      listings_mortagages: INT
     }
 
 ```
@@ -64,7 +265,6 @@ npm i
 {
   price: INT
   rating: INT
-  istings_mortagages: INT
 }
   ```
 
@@ -98,7 +298,6 @@ npm i
  {
     price: INT
     rating: INT
-    listings_mortgages: INT
   }
   ```
 
@@ -150,230 +349,10 @@ npm i
       "message": "Failed to deleted a listing."
     }
 ```
-## Mortgages API
--GET `/api/mortgages/:id`
-
-**Path Parameters:**
-- `id` - mortgages id
-
-**Success Status Code:** `200`
-
-
-**Returns:** Expects JSON with the following keys.
-
-```json
-{
-  id: INT
-  name: STRING
-  terms: ARRAY[STRING,]
-  fees: INT
-  rate: INT
-  apr: INT
-}
-```
-
--POST `/api/mortgages`
-
-**Path Parameters:**
-- `id` - mortgages id
-
-**Request Body**
-```json
-{
-  name: STRING
-  terms: ARRAY[STRING,]
-  fees: INT
-  rate: INT
-  apr: INT
-}
-  ```
-
-### Path responses:
-**Success Status Code:** `201`
-
-
-### Response format:
-* Returns: JSON
-
-```json
-    {
-      "message": "Successfully added a mortgage."
-    }
-```
-
-```json
-    {
-      "message": "Failed to add a mortgage."
-    }
-```
-
-</br>
-
--PUT `/api/mortgages/:id`
-
-**Path Parameters:**
-- `id` - mortgages id
-
-**Request Body**
-*
-```json
-{
-  name: STRING
-  terms: ARRAY[STRING,]
-  fees: INT
-  rate: INT
-  apr: INT
-}
-  ```
-
-### Path responses:
-**Success Status Code:** `201`
-
-
-### Response format:
-* Returns: JSON
-
-```json
-    {
-      "message": "Successfully updated a mortgage."
-    }
-```
-
-```json
-    {
-      "message": "Failed to update a mortgage."
-    }
-```
-</br>
-
--DELETE `/api/mortgage/:id`
-
-###Path parameters:
-
-**Request Body**
-*
-
-   ```id``` mortgage id
-
-
-### Path responses:
-**Success Status Code:** `204`
-
-
-### Response format:
-* Returns: JSON
-
-```json
-    {
-      "message": "Successfully deleted a mortgage."
-    }
-```
-
-```json
-    {
-      "message": "Failed to deleted a mortgage."
-    }
-```
-
-</br>
-
-## __user_favorites API__
-
-</br>
-
-### Add a relationship between user and favorite mortgages
-
-- POST `/api/user_favorites`
-
-**Success Status Code:** `201`
-
-
-**Request Body**: Expects JSON with the following keys.
-
-```json
-{
-  id: INT
-  user_id: INT
-  mortagages_id: INT
-}
-```
-## Delete user_favorites matching photo id
-
-- DELETE `/api/user_favorites/:id`
-
-**Path Parameters:**
-
-- `id` - user_favorites ID
-
-**Success Status Code:** `204`
-
-
-### Response format:
-* Returns: JSON
-
-```json
-    {
-      "message": "Successfully deleted a relationship between user and favorites."
-    }
-```
-
-```json
-    {
-      "message": "Failed to deleted a relationship between user and favorites."
-    }
-```
-
-</br>
-
-## __listing_mortgages API__
-
-</br>
-
-### Add a relationship between listing and mortgages
-
-- POST `/api/listing_mortgages`
-
-**Success Status Code:** `201`
-
-
-**Request Body**: Expects JSON with the following keys.
-
-```json
-{
-  id: INT
-  listing_id: INT
-  mortagages_id: INT
-}
-```
-## Delete listing_mortgages matching photo id
-
-- DELETE `/api/listing_mortgages/:id`
-
-**Path Parameters:**
-
-- `id` - listing_mortgages ID
-
-**Success Status Code:** `204`
-
-
-### Response format:
-* Returns: JSON
-
-```json
-    {
-      "message": "Successfully deleted a relationship between listing and mortgages."
-    }
-```
-
-```json
-    {
-      "message": "Failed to deleted a relationship between listing and mortgages."
-    }
-```
-
 </br>
 
 ## __USER API__
+
  </br>
 
 ## Add a user
@@ -389,9 +368,8 @@ npm i
 {
   username: String,
   email: String,
-  password: String,
+  user_password: String,
   ip: String
-  user_favorites: INT
 }
 ```
 </br>
@@ -408,17 +386,16 @@ npm i
 
 ```json
 {
-  id: INT
+  usr_id: INT
   username: String,
   email: String,
-  password: String,
+  user_password: String,
   ip: String
-  user_favorites: INT
 }
 ```
 </br>
 
--PATCH `/api/users/:userId`
+-PATCH `/api/users/:id`
 
 **Path Parameters:**
 - `id` - user ID
@@ -427,12 +404,11 @@ npm i
 *
 ```json
 {
-  id: INT
+  usr_id: INT
   username: String,
   email: String,
-  password: String,
+  user_password: String,
   ip: String
-  user_favorites: INT
 }
 ```
 
@@ -485,3 +461,136 @@ npm i
       "message": "Failed to deleted a user from database."
     }
 ```
+
+</br>
+
+## __User Favorites API__
+
+</br>
+
+### Read a relationship between user and favorite mortgages
+
+- GET `/api/user/:id/mortgages`
+
+**Path Parameters:**
+- `id` - user id
+
+**Success Status Code:** `200`
+
+
+**Returns:** Expects JSON with the following keys.
+
+```json
+{
+  mortgage_id: INT
+  mortgage_name: STRING
+  terms: STRING[]
+  fees: INT
+  rate: INT
+  apr: INT
+}
+```
+</br>
+
+### Add a relationship between user and favorite mortgages
+
+- POST `/api/user/:id/mortgages`
+
+**Success Status Code:** `201`
+
+
+**Request Body**: Expects JSON with the following keys.
+
+```json
+{
+  mortgage_id: INT
+  mortgage_name: STRING
+  terms: STRING[]
+  fees: INT
+  rate: INT
+  apr: INT
+}
+```
+## Delete a specific mortgage from a specific user
+
+- DELETE `/api/user/:id/mortgages/:id`
+
+**Path Parameters:**
+
+- `user_id` - user id
+- `mortgage_id` - mortgage id
+
+**Success Status Code:** `204`
+
+
+### Response format:
+* Returns: JSON
+
+```json
+    {
+      "message": "Successfully deleted a specific mortgage from a specific user."
+    }
+```
+
+```json
+    {
+      "message": "Failed to deleted a specific mortgage from a specific user"
+    }
+```
+
+</br>
+
+## __listing_mortgages API__
+
+</br>
+
+### Add a relationship between listing and mortgages
+
+- POST `/api/listing/:id/mortgages`
+
+**Path Parameters:**
+
+- `id` - listing id
+**Success Status Code:** `201`
+
+
+**Request Body**: Expects JSON with the following keys.
+
+```json
+{
+  mortgage_name: STRING
+  terms: STRING[]
+  fees: INT
+  rate: INT
+  apr: INT
+}
+```
+## Delete a specific mortgage from a specific listing
+
+- DELETE `/api/listing/:id/mortgages/:id`
+
+**Path Parameters:**
+
+- `listing_id` - listing id
+- `mortgages_id` - mortgages id
+
+**Success Status Code:** `204`
+
+
+### Response format:
+* Returns: JSON
+
+```json
+    {
+      "message": "Successfully deleted a specific mortgage from a specific listing."
+    }
+```
+
+```json
+    {
+      "message": "Failed to deleted a specific mortgage from a specific listing"
+    }
+```
+
+</br>
+

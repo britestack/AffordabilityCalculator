@@ -1,4 +1,4 @@
-const csvWriter = require('csv-writer').createObjectCsbWriter;
+const csvWriter = require('csv-writer').createObjectCsvWriter;
 
 const records = 10000000;
 
@@ -19,7 +19,7 @@ const listings = (startIndex, endIndex) => {
 };
 
 const csvGenerator = csvWriter({
-  path: '/Users/jacky/Desktop/Workspace/SDC/AffordabilityCalculator/db/listings.csv',
+  path: './db/listings.csv',
   header: [
     { id: 'listing_id', title: 'listing_id' },
     { id: 'price', title: 'price' },
@@ -27,13 +27,13 @@ const csvGenerator = csvWriter({
   ],
 });
 
-function writeLottaListings(num) {
+async function writeLottaListings(num) {
   const currentChunk = Math.floor(num / 100);
   console.log(`Counting Chunk: ${currentChunk}`);
   for (let i = 0; i < 100; i += 1) {
     console.log(`Writing chunk: ${i + 1} `);
-    const listingDump = listings(currentChunk * i, currentChunk * (i + 1) - 1);
-    csvGenerator.writeRecords(listingDump);
+    const listingToWrite = listings(currentChunk * i, currentChunk * (i + 1) - 1);
+    await csvGenerator.writeRecords(listingToWrite);
   }
 }
 
