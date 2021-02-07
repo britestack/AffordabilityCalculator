@@ -18,7 +18,7 @@ const listings = (startIndex, endIndex) => {
   return listingArray;
 };
 
-const csvGenerator = csvWriter({
+const csvListingGenerator = csvWriter({
   path: './db/listings.csv',
   header: [
     { id: 'listing_id', title: 'listing_id' },
@@ -33,7 +33,7 @@ async function writeLottaListings(num) {
   for (let i = 0; i < 100; i += 1) {
     console.log(`Writing chunk: ${i + 1} `);
     const listingToWrite = listings(currentChunk * i, currentChunk * (i + 1) - 1);
-    await csvGenerator.writeRecords(listingToWrite);
+    await csvListingGenerator.writeRecords(listingToWrite);
   }
 }
 
