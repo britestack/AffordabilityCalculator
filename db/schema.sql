@@ -1,30 +1,38 @@
 DROP DATABASE IF EXISTS sdc;
-CREATE DATABASE IF NOT EXISTS sdc;
+CREATE DATABASE sdc;
 
-/c sdc
+\c sdc
 
-CREATE TABLE IF NOT EXISTS listings (
+CREATE TABLE IF NOT EXISTS listings
+(
   listing_id SERIAL PRIMARY KEY,
   price integer NOT NULL,
-  rating decimal NOT NULL,
+  rating decimal NOT NULL
 );
-CREATE TABLE IF NOT EXISTS users (
+
+CREATE TABLE IF NOT EXISTS users
+(
   users_id SERIAL PRIMARY KEY,
-  username VARCHAR(25) NOT NULL,
+  username VARCHAR(50) NOT NULL,
   email VARCHAR(50) NOT NULL,
   user_password VARCHAR(25) NOT NULL,
   user_ip VARCHAR(45) NOT NULL
-)
-CREATE TABLE IF NOT EXISTS mortgages (
+);
+
+CREATE TABLE IF NOT EXISTS mortgages
+(
   mortgage_id SERIAL PRIMARY KEY,
-  mortgage_name VARCHAR(25) NOT NULL,
-  terms text[] NOT NULL,
+  users_id integer NOT NULL,
+  listing_id integer NOT NULL,
+  mortgage_name VARCHAR(50) NOT NULL,
+  terms VARCHAR(30) NOT NULL,
   fees integer NOT NULL,
   rate decimal NOT NULL,
   apr decimal NOT NULL,
-  users_id integer NOT NULL REFERENCES users(users_id),
-  listing_id integer NOT NULL REFERENCES listings(listing_id)
-)
-\COPY listings (listing_id, price, rating) FROM './db/listings.csv' WITH CSV HEADER DELIMITER ',';
-\COPY users (usr_id, username, email, user_password, user_ip) FROM './db/users.csv' WITH CSV HEADER DELIMITER ',';
-\COPY mortgages (mortgage_id, mortgage_name, terms, fees, rate, apr) FROM './db/mortgages.csv' WITH CSV HEADER DELIMITER ',';
+  FOREIGN KEY (users_id) REFERENCES users (users_id) ON DELETE CASCADE,
+  FOREIGN KEY (listing_id) REFERENCES listings (listing_id) ON DELETE CASCADE
+);
+
+\COPY listings FROM '/Users/jacky/Desktop/Workspace/SDC/AffordabilityCalculator/db/listings.csv' WITH CSV HEADER DELIMITER ',';
+\COPY users  FROM '/Users/jacky/Desktop/Workspace/SDC/AffordabilityCalculator/db/users.csv' WITH CSV HEADER DELIMITER ',';
+\COPY mortgages FROM '/Users/jacky/Desktop/Workspace/SDC/AffordabilityCalculator/db/mortgages.csv' WITH CSV HEADER DELIMITER ',';
