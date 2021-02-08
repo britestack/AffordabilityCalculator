@@ -32,7 +32,9 @@ CREATE TABLE IF NOT EXISTS mortgages
   FOREIGN KEY (users_id) REFERENCES users (users_id) ON DELETE CASCADE,
   FOREIGN KEY (listing_id) REFERENCES listings (listing_id) ON DELETE CASCADE
 );
+CREATE INDEX mortgage_listing_idx ON mortgages (listing_id);
+CREATE INDEX mortgage_users_idx ON mortgages (users_id);
 
 \COPY listings FROM '/Users/jacky/Desktop/Workspace/SDC/AffordabilityCalculator/db/listings.csv' WITH CSV HEADER DELIMITER ',';
 \COPY users  FROM '/Users/jacky/Desktop/Workspace/SDC/AffordabilityCalculator/db/users.csv' WITH CSV HEADER DELIMITER ',';
-\COPY mortgages FROM '/Users/jacky/Desktop/Workspace/SDC/AffordabilityCalculator/db/mortgages.csv' WITH CSV HEADER DELIMITER ',';
+\COPY mortgages FROM '/Users/jacky/Desktop/Workspace/SDC/AffordabilityCalculator/db/mortgages.csv' WITH CSV HEADER DELIMITER ','
