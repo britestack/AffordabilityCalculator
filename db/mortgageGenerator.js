@@ -14,6 +14,8 @@ const mortgages = (startIndex, endIndex) => {
   for (let i = startIndex; i <= endIndex; i += 1) {
     const entry = {
       mortgage_id: i,
+      users_id: Math.floor(Math.random() * 10000000),
+      listing_id: Math.floor(Math.random() * 10000000),
       mortgage_name: faker.company.companyName(),
       terms: randomOffering(),
       fees: faker.finance.amount(0, 550, 0),
@@ -29,6 +31,9 @@ const csvMortgageGenerator = csvWriter({
   path: './db/mortgages.csv',
   header: [
     { id: 'mortgage_id', title: 'mortgage_id' },
+    { id: 'users_id', title: 'users_id' },
+    { id: 'listing_id', title: 'listing_id' },
+    { id: 'mortgage_name', title: 'mortgage_name'},
     { id: 'terms', title: 'terms' },
     { id: 'fees', title: 'fees' },
     { id: 'rate', title: 'rate' },
