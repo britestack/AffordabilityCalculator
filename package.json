@@ -13,7 +13,7 @@
     "seed_users": "node db/usersGenerator.js",
     "seed_all": "node db/mortgageGenerator.js & node db/usersGenerator.js & node db/listingGenerator.js",
     "test": "jest --coverage",
-    "docker-start": "node db/seed.js & webpack & node server/index.js"
+    "docker-start": "webpack & node server/index.js"
   },
   "dependencies": {
     "@babel/core": "^7.12.10",
