@@ -30,15 +30,19 @@ const LendersContainer = styled.div`
   overflow: auto;
 `;
 
-const LenderModal = ({ toggleModal }) => {
+const LenderModal = ({ toggleModal, listingId }) => {
   const [lenders, setLenders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchLenders = async () => {
-      const { data } = await axios.get('/mortgage');
-      setLenders(data);
-      setLoading(false);
+      const { data } = await axios.get(`api/${listingId}/mortgages`);
+      if (data) {
+        data.forEach((mortgage) => {
+          setLenders(mortgage);
+        });
+        setLoading(false);
+      }
     };
     fetchLenders();
   }, []);

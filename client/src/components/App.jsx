@@ -35,6 +35,7 @@ class App extends Component {
       loading: true,
       error: null,
       showModal: false,
+      listingId: null,
     };
     this.handlePriceChange = this.handlePriceChange.bind(this);
     this.handleDownPaymentChange = this.handleDownPaymentChange.bind(this);
@@ -42,12 +43,18 @@ class App extends Component {
     this.handleInterestChange = this.handleInterestChange.bind(this);
     this.handleLoanTypeChange = this.handleLoanTypeChange.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
+    this.handleListingId = this.handleListingId.bind(this);
   }
 
   async componentDidMount() {
     const randomIdx = Math.floor(Math.random() * 100);
-    const { data } = await axios.get(`/homes/${randomIdx}`);
-    this.handlePriceChange(data.price);
+    const { data } = await axios.get(`/api/${randomIdx}/listings`);
+    this.handlePriceChange(data[0].price);
+    this.handleListingId(randomIdx);
+  }
+
+  handleListingId(id) {
+    this.setState({listingId: id});
   }
 
   handleInterestChange(interestRate) {
@@ -177,6 +184,7 @@ class App extends Component {
       propertyTaxes,
       mortgageIns,
       showModal,
+      listingId,
     } = this.state;
 
     if (loading) return <div>Loading...</div>;
@@ -198,7 +206,7 @@ class App extends Component {
             interestRate={interestRate}
           />
           <Display homePrice={homePrice} state={this.state} toggleModal={this.toggleModal} />
-          { showModal && <LenderModal toggleModal={this.toggleModal} />}
+          { showModal && <LenderModal toggleModal={this.toggleModal} listingId={listingId} />}
         </AppContainer>
       </>
     );
