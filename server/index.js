@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 
 // serve static
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
-
+app.use('/loaderio-91b74eeb3a3e11600bc41da6c7772260.txt', express.static(path.join(__dirname, '../loaderio-91b74eeb3a3e11600bc41da6c7772260.txt')));
 // Routes
 app.use('/api/:listing_id/listings', (req, res, next) => {
   req.listing_id = req.params.listing_id;

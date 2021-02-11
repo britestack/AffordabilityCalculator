@@ -7,7 +7,7 @@ export const options = {
     { duration: '60s', target: 100 }, //below normal
     { duration: '20s', target: 400 },
     { duration: '1m', target: 600 },  //normal load
-    { duration: '2m', target: 1200 }, //apporaching breaking point?
+    { duration: '2m', target: 1200 }, //approaching breaking point?
     { duration: '2m', target: 1500 },
     { duration: '1m', target: 1500 }, // should explode here..
     { duration: '40s', target: 1400 },
