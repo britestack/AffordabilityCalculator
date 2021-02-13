@@ -1,7 +1,7 @@
 const csvWriter = require('csv-writer').createObjectCsvWriter;
 const faker = require('faker');
 
-const records = 10000000;
+const records = 1600000;
 
 const users = (startIndex, endIndex) => {
   const usersArray = [];
@@ -19,7 +19,7 @@ const users = (startIndex, endIndex) => {
 };
 
 const csvUsersGenerator = csvWriter({
-  path: './db/users.csv',
+  path: './users.csv',
   header: [
     { id: 'users_id', title: 'users_id' },
     { id: 'username', title: 'username' },
