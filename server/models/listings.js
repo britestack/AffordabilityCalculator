@@ -11,7 +11,7 @@ const pool = new Pool({
 
 const getListings = (listing_id, cb) => {
   pool
-    .query(`SELECT * from listings where listing_id=${listing_id}`, (err, { rows }) => {
+    .query(`SELECT * from listings where listing_id=${listing_id}`, (err, { rows }) => {    
       if (err) {
         cb(err);
       } else {

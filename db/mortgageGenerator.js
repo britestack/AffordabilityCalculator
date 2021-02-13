@@ -1,7 +1,7 @@
 const csvWriter = require('csv-writer').createObjectCsvWriter;
 const faker = require('faker');
 
-const records = 10000000;
+const records = 1600000;
 
 const randomOffering = () => {
   const offeringPossibilities = ['15 Year Fixed', '30 Year Fixed', '5/1 Arm'];
@@ -14,8 +14,8 @@ const mortgages = (startIndex, endIndex) => {
   for (let i = startIndex; i <= endIndex; i += 1) {
     const entry = {
       mortgage_id: i,
-      users_id: Math.floor(Math.random() * 10000000),
-      listing_id: Math.floor(Math.random() * 10000000),
+      users_id: Math.floor(Math.random() * 1600000),
+      listing_id: Math.floor(Math.random() * 1600000),
       mortgage_name: faker.company.companyName(),
       terms: randomOffering(),
       fees: faker.finance.amount(0, 550, 0),
@@ -28,7 +28,7 @@ const mortgages = (startIndex, endIndex) => {
 };
 
 const csvMortgageGenerator = csvWriter({
-  path: './db/mortgages.csv',
+  path: './mortgages.csv',
   header: [
     { id: 'mortgage_id', title: 'mortgage_id' },
     { id: 'users_id', title: 'users_id' },

@@ -18,6 +18,7 @@ const pool = new Pool({
   database: 'sdc',
   password: 'peanutbutt3r',
   port: 5432,
+  host: 'localhost',
 });
 
 pool.connect()
@@ -28,8 +29,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // serve static
-app.use('/', express.static(path.join(__dirname, '../client/dist')));
-app.use('/loaderio-91b74eeb3a3e11600bc41da6c7772260.txt', express.static(path.join(__dirname, '../loaderio-91b74eeb3a3e11600bc41da6c7772260.txt')));
+app.use('/loaderio-901edfdebddd2bad0a0b4fdb38cc1646.txt', express.static(path.join(__dirname, '../loaderio-901edfdebddd2bad0a0b4fdb38cc1646.txt')));
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
 // Routes
 app.use('/api/:listing_id/listings', (req, res, next) => {
   req.listing_id = req.params.listing_id;

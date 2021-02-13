@@ -1,6 +1,6 @@
 const csvWriter = require('csv-writer').createObjectCsvWriter;
 
-const records = 10000000;
+const records = 1600000;
 
 const getRandoms = (max, min) => (Math.floor((Math.random() * (max - min)) + min));
 const getRatings = (max, min) => Math.random() * (max - min) + min;
@@ -19,7 +19,7 @@ const listings = (startIndex, endIndex) => {
 };
 
 const csvListingGenerator = csvWriter({
-  path: './db/listings.csv',
+  path: './listings.csv',
   header: [
     { id: 'listing_id', title: 'listing_id' },
     { id: 'price', title: 'price' },
